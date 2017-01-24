@@ -1,0 +1,18 @@
+XTerm*termName:       xterm-256color
+XTerm*locale:         UTF-8
+XTerm*loginShell:     true
+XTerm*visualBell:     true
+XTerm*scrollBar:      false
+XTerm*saveLines:      10000
+XTerm*faceName:       Monospace:bold
+XTerm*faceSize:       11
+
+XTerm*background:     Black
+XTerm*color0:         Black
+XTerm*color1:         Red3
+XTerm*color2:         Green4
+XTerm*color3:         Yellow
+XTerm*color4:         CornflowerBlue
+XTerm*color5:         Magenta3
+XTerm*color6:         Cyan
+XTerm*foreground:     Gray

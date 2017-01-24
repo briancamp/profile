@@ -1,0 +1,4 @@
+#ACTION           SOURCE                   DEST          PROTO   DEST
+#                                                                PORT(S)
+
+Ping/ACCEPT       all                      fw

@@ -1,0 +1,43 @@
+set nobackup
+set cmdheight=2
+set nocompatible
+set nohlsearch
+set incsearch
+set ruler
+set viminfo=
+
+filetype on
+
+syntax off
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+if exists('*matchadd')
+    highlight ColorColumn ctermbg=magenta
+    call matchadd('ColorColumn', '\%81v', -1)
+endif
+
+fu PythonEdit()
+    :set tabstop=8
+    :set expandtab
+    :set shiftwidth=4
+    :set softtabstop=4
+    :set ai
+endf
+
+let @p = ':call PythonEdit()'
+
+set backspace=indent,eol,start
+
+execute pathogen#infect()
+
+let g:syntastic_python_flake8_args='--ignore=E402,F403'
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers=['flake8']
