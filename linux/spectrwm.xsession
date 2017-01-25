@@ -1,13 +1,15 @@
 #!/bin/sh
 
-PATH="$PATH":~/bin
-
 case "$(hostname -s)" in
     dogan)
         xrandr --dpi 220
         echo 'Xft.dpi: 220' | xrdb -merge -
         synclient TapButton2=3 TapButton3=2
         xbacklight -set 50
+    ;;
+    skull-canyon)
+        xrandr --dpi 220
+        echo 'Xft.dpi: 220' | xrdb -merge -
     ;;
 esac
 
