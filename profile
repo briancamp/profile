@@ -80,4 +80,5 @@ if [ -n "$BASH_VERSION" ]; then
     if ! [ -f ~/.bash_sessions_disable ]; then
         touch ~/.bash_sessions_disable 2> /dev/null
     fi
+    unset command_not_found_handle
 fi
