@@ -10,7 +10,7 @@ cmd_exists() {
 
 
 lsb_version() {
-    lsb_release -sir
+    echo $(lsb_release -sir)
 }
 
 
