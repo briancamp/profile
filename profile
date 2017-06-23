@@ -82,3 +82,14 @@ if [ -n "$BASH_VERSION" ]; then
     fi
     unset command_not_found_handle
 fi
+
+# Link a predictible path to ssh-agent's socket, to keep tmux
+# re-attaches from breaking ssh.
+if [ -n "$SSH_AUTH_SOCK" ]; then
+    persist_sock="$HOME/.ssh/agent.sock"
+    if [ "$SSH_AUTH_SOCK" != "$persist_sock" ]; then
+        ln -sf "$SSH_AUTH_SOCK" "$persist_sock" && \
+            export SSH_AUTH_SOCK="$persist_sock"
+    fi
+    unset persist_sock
+fi
