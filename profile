@@ -34,8 +34,6 @@ set -o vi
 export VISUAL=vi
 export EDITOR=vi
 
-export HISTFILE=$HOME/.sh_history
-
 for dir in /bin /usr/bin /usr/local/bin /sbin /usr/sbin /usr/local/sbin \
            "$HOME/bin" "$HOME/.local/bin"; do
     if [ -d "$dir" ] && [[ ":$PATH:" != *":$dir:"* ]]; then
