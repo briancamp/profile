@@ -1,7 +1,5 @@
 #!/bin/sh
 
-domain=int.thecamps.org
-
 get_config() {
     local search=$(grep '^search ' /etc/resolv.conf 2> /dev/null | head -n 1)
     local domain=$(echo "$search" | sed -re 's/search +//' -e 's/ .*//')
