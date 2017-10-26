@@ -1,0 +1,4 @@
+#ZONE   TYPE
+fw      firewall
+wan     ipv6
+#dock    ipv6
