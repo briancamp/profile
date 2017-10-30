@@ -91,3 +91,5 @@ if [ -n "$SSH_AUTH_SOCK" ]; then
     fi
     unset persist_sock
 fi
+
+. ~/.profile.local 2> /dev/null
