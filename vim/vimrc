@@ -8,7 +8,8 @@ set viminfo=
 
 filetype on
 
-syntax off
+syntax on
+set background=dark
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 if exists('*matchadd')
