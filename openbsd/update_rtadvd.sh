@@ -40,7 +40,7 @@ fi
 
 set -e
 tmpf="$(mktemp)"
-get_config "$@" > $tmpf
+get_config "$@" > "$tmpf"
 
 if cmp -s "$tmpf" /etc/rtadvd.conf; then
     rm -f "$tmpf"
