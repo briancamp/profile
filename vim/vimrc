@@ -69,10 +69,12 @@ set background=dark
 " disable automatic comment continuation
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" map the @p macro to a function that enables advanced features for the
-" current session
-" This probably isn't kosher.
-let @p = ':call EnableAdvanced()'
+" script to fix python indenting
+runtime scripts/indentpython.vim/indent/python.vim
+
+" command alias for EnableAdvanced, to enable advanced / IDE like features
+" for the current session
+:command BCEdit call EnableAdvanced()
 
 " Load pathogen, but disable automatic checks by default
 execute pathogen#infect()
