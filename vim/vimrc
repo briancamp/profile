@@ -69,6 +69,9 @@ let g:syntastic_mode_map = { 'mode': 'passive' }
 " enable syntax highlighting
 syntax on
 
+" disable use of bold fonts
+set t_md=
+
 " set the color scheme to something easy to read on dark terminals
 set background=dark
 
