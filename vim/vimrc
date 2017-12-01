@@ -1,44 +1,79 @@
-set nobackup
-set cmdheight=2
-set nocompatible
-set nohlsearch
-set incsearch
-set ruler
-set viminfo=
+fu EnableSyntastic()
+  let g:syntastic_mode_map = { 'mode': 'active' }
 
-filetype on
-
-syntax on
-set background=dark
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-if exists('*matchadd')
-    highlight ColorColumn ctermbg=magenta
-    call matchadd('ColorColumn', '\%81v', -1)
-endif
-
-fu PythonEdit()
-    :set tabstop=8
-    :set expandtab
-    :set shiftwidth=4
-    :set softtabstop=4
-    :set ai
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+  
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
+  let g:syntastic_python_checkers=['flake8']
+  let g:syntastic_python_flake8_args='--ignore=E402,F403'
 endf
 
-let @p = ':call PythonEdit()'
+fu EnableAdvanced()
+  " enable advanced / IDE type features
 
-set backspace=indent,eol,start
+  call EnableSyntastic()
 
+  " allow backspace to delete indents
+  set backspace=indent,eol,start
+
+  " highlight lines lines over 80 chars
+  highlight ColorColumn ctermbg=magenta
+  call matchadd('ColorColumn', '\%81v', -1)
+
+  autocmd FileType python set
+    \ autoindent expandtab shiftwidth=4 softtabstop=4 tabstop=8
+  autocmd Filetype sh set
+    \ autoindent expandtab shiftwidth=2 softtabstop=2 tabstop=8
+  filetype detect
+endf
+
+
+" disable backup files (usually already disabled)
+set nobackup
+
+" increase the size of the command bar
+set cmdheight=2
+
+" enable the ruler (column/position numbers) in the command bar
+set ruler
+
+" disable compatibility (vi) mode
+set nocompatible
+
+" enable incremental search
+set incsearch
+
+" disable persistant highlightning
+set nohlsearch
+
+" disable creation of the viminfo file
+set viminfo=
+
+" ignore modelines
+set nomodeline
+
+" enable filetype detection
+filetype on
+
+" enable syntax highlighting
+syntax on
+
+" set the color scheme to something easy to read on dark terminals
+set background=dark
+
+" disable automatic comment continuation
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" map the @p macro to a function that enables advanced features for the
+" current session
+" This probably isn't kosher.
+let @p = ':call EnableAdvanced()'
+
+" Load pathogen, but disable automatic checks by default
 execute pathogen#infect()
-
-let g:syntastic_python_flake8_args='--ignore=E402,F403'
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers=['flake8']
+let g:syntastic_mode_map = { 'mode': 'passive' }
