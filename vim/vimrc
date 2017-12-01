@@ -62,6 +62,10 @@ set nomodeline
 " enable filetype detection
 filetype on
 
+" Load pathogen, but disable automatic checks by default
+execute pathogen#infect()
+let g:syntastic_mode_map = { 'mode': 'passive' }
+
 " enable syntax highlighting
 syntax on
 
@@ -78,6 +82,3 @@ runtime scripts/indentpython.vim/indent/python.vim
 " for the current session
 :command BCEdit call EnableAdvanced()
 
-" Load pathogen, but disable automatic checks by default
-execute pathogen#infect()
-let g:syntastic_mode_map = { 'mode': 'passive' }
