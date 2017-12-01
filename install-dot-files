@@ -1,0 +1,47 @@
+#!/bin/sh
+
+# Setup links to various dotfiles.
+
+
+prompt_and_link() {
+  local src_dir="$(dirname "$0")"
+  local src="${src_dir}/$1"
+  local dst="$2"
+
+  if prompt_yn "${dst} -> ${src} ? "; then
+    ln -sf "${src}" "${dst}"
+  fi
+}
+
+
+prompt_yn() {
+  local resp
+
+  echo -n "$@"
+  read resp
+  echo "${resp}" | egrep -q -i '^ye?s?$'
+}
+
+
+if [ -n "$1" ]; then
+  cat <<EOF
+
+usage: $0
+
+Link dotfiles from this exectuable's directory to the current directory.
+
+EOF
+  exit 1
+fi
+
+if [ "$(dirname "$0")" -ef "${PWD}" ]; then
+  echo "cd to the destination directory and run from there."
+  exit 1
+fi
+
+prompt_and_link gitconfig .gitconfig
+prompt_and_link inputrc .inputrc
+prompt_and_link profile .profile
+prompt_and_link tmux .tmux.conf
+prompt_and_link vim .vim
+prompt_and_link vim/vimrc .vimrc
