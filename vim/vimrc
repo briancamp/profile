@@ -29,6 +29,8 @@ fu EnableAdvanced()
     \ autoindent expandtab shiftwidth=4 softtabstop=4 tabstop=8
   autocmd Filetype sh set
     \ autoindent expandtab shiftwidth=2 softtabstop=2 tabstop=8
+  autocmd Filetype vim set
+    \ autoindent expandtab shiftwidth=2 softtabstop=2 tabstop=8
   filetype detect
 endf
 
