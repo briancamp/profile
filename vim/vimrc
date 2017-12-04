@@ -79,7 +79,7 @@ set background=dark
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " script to fix python indenting
-runtime scripts/indentpython.vim/indent/python.vim
+runtime scripts/indent-python/python.vim
 
 " command alias for EnableAdvanced, to enable advanced / IDE like features
 " for the current session
