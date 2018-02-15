@@ -21,6 +21,12 @@ fu EnableAdvanced()
   " allow backspace to delete indents
   set backspace=indent,eol,start
 
+  " enable syntax highlighting
+  syntax on
+
+  " script to fix python indenting
+  runtime scripts/indent-python/python.vim
+
   " highlight lines lines over 80 chars
   highlight ColorColumn ctermbg=magenta
   call matchadd('ColorColumn', '\%81v', -1)
@@ -66,8 +72,11 @@ filetype on
 execute pathogen#infect()
 let g:syntastic_mode_map = { 'mode': 'passive' }
 
-" enable syntax highlighting
-syntax on
+" disable syntax highlighting
+syntax off
+
+" disable auto-indenting
+set noautoindent
 
 " disable use of bold fonts
 set t_md=
@@ -77,9 +86,6 @@ set background=dark
 
 " disable automatic comment continuation
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-" script to fix python indenting
-runtime scripts/indent-python/python.vim
 
 " command alias for EnableAdvanced, to enable advanced / IDE like features
 " for the current session
