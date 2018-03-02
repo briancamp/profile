@@ -1,0 +1,8 @@
+[hk1]>[vol+]
+[hk3]>[vol-]
+[hk5]>[mute]
+[caps]>[esc]
+[esc]>[caps]
+[lwin]>[lalt]
+[lalt]>[lwin]
+{hk7}>{-lshft}{-lctrl}{shtdn}{+lshft}{+lctrl}

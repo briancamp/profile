@@ -1,0 +1,6 @@
+[hk1]>[vol+]
+[hk3]>[vol-]
+[hk5]>[mute]
+[caps]>[esc]
+[esc]>[caps]
+{hk7}>{-lwin}{l}{+lwin}
