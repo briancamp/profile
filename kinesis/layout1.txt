@@ -5,4 +5,6 @@
 [esc]>[caps]
 [lwin]>[lalt]
 [lalt]>[lwin]
+[pause]>[ins]
+[ins]>[pause]
 {hk7}>{-lshft}{-lctrl}{shtdn}{+lshft}{+lctrl}

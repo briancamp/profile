@@ -3,4 +3,6 @@
 [hk5]>[mute]
 [caps]>[esc]
 [esc]>[caps]
+[pause]>[ins]
+[ins]>[pause]
 {hk7}>{-lwin}{l}{+lwin}
