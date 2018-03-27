@@ -1,4 +1,5 @@
 [hk1]>[vol+]
+[hk2]>[play]
 [hk3]>[vol-]
 [hk5]>[mute]
 [caps]>[esc]
