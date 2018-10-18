@@ -16,9 +16,12 @@ get_config() {
             continue
         fi
 	cat <<EOF
-$iface:\\
-	:rdnss="$addr"::dnssl="$domain":
-
+interface $iface {
+	dns {
+		nameserver $addr
+		search $domain
+	}
+}
 EOF
     done
 }
@@ -27,8 +30,8 @@ if [ -z "$1" ]; then
     cat <<EOF
 Usage: $0 <interface> ...
 
-Generate a rtadvd.conf with a DNS configuration for the provided interfaces,
-and restart rtadvd if necessary.
+Generate a rad.conf with a DNS configuration for the provided interfaces,
+and restart rad if necessary.
 EOF
     exit 1
 fi
@@ -42,9 +45,9 @@ set -e
 tmpf="$(mktemp)"
 get_config "$@" > "$tmpf"
 
-if cmp -s "$tmpf" /etc/rtadvd.conf; then
+if cmp -s "$tmpf" /etc/rad.conf; then
     rm -f "$tmpf"
 else
-    mv -f "$tmpf" /etc/rtadvd.conf
-    rcctl restart rtadvd
+    mv -f "$tmpf" /etc/rad.conf
+    rcctl restart rad
 fi
