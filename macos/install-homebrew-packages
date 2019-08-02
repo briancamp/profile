@@ -1,0 +1,16 @@
+#!/bin/sh
+
+packages="
+  coreutils
+  flake8
+  gnu-sed
+  gnu-tar
+  nmap
+  pwgen
+  telnet
+  tmux
+  wget
+  xz
+"
+
+brew install $packages
