@@ -20,13 +20,11 @@ macos_version() {
 }
 
 
-redhat_release_version() {
-    if [ -f /etc/centos-release ]; then
-        release_file=/etc/centos-release
-    else
-        release_file=/etc/redhat-release
-    fi
-    sed -r 's/([^ ]+)[^0-9]+([0-9.]+).*/\1 \2/' "$release_file"
+os_release_version() {
+    (
+      . /etc/os-release > /dev/null 2>&1
+      echo $PRETTY_NAME
+    )
 }
 
 
@@ -44,8 +42,8 @@ unset dir
 
 if cmd_exists lsb_release; then
     os_version=$(lsb_version)
-elif [ -f /etc/redhat-release ]; then
-    os_version=$(redhat_release_version)
+elif [ -f /etc/os-release ]; then
+    os_version=$(os_release_version)
 elif cmd_exists sw_vers uname && [ "$(uname)" == Darwin ]; then
     os_version=$(macos_version)
 elif [ "$OSTYPE" == cygwin ] && cmd_exists uname sed; then
