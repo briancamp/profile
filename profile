@@ -20,7 +20,7 @@ macos_version() {
 }
 
 
-redhat-release_version() {
+redhat_release_version() {
     if [ -f /etc/centos-release ]; then
         release_file=/etc/centos-release
     else
@@ -45,7 +45,7 @@ unset dir
 if cmd_exists lsb_release; then
     os_version=$(lsb_version)
 elif [ -f /etc/redhat-release ]; then
-    os_version=$(redhat-release_version)
+    os_version=$(redhat_release_version)
 elif cmd_exists sw_vers uname && [ "$(uname)" == Darwin ]; then
     os_version=$(macos_version)
 elif [ "$OSTYPE" == cygwin ] && cmd_exists uname sed; then
