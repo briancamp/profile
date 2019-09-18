@@ -1,0 +1,7 @@
+cryptsetup
+doas
+git
+gptfdisk
+nmap
+rsync
+vim
