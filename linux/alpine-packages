@@ -4,4 +4,5 @@ git
 gptfdisk
 nmap
 rsync
+shorewall
 vim
