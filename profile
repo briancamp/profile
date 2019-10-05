@@ -44,9 +44,9 @@ if cmd_exists lsb_release; then
   os_version=$(lsb_version)
 elif [ -f /etc/os-release ]; then
   os_version=$(os_release_version)
-elif cmd_exists sw_vers uname && [ "$(uname)" == Darwin ]; then
+elif cmd_exists sw_vers uname && [ "$(uname)" = Darwin ]; then
   os_version=$(macos_version)
-elif [ "$OSTYPE" == cygwin ] && cmd_exists uname sed; then
+elif [ "$OSTYPE" = cygwin ] && cmd_exists uname sed; then
   os_version="Windows $(uname | sed 's/.*-//')"
   export DISPLAY=:0.0
   if cmd_exists ssh-pageant && [ -n "$TEMP" ]; then
@@ -58,7 +58,11 @@ else
   os_version=Unknown
 fi
 
-PS1=$(echo -e "\033[0;32m\u@\h:\w ($os_version)\[\033[0m\]\n\$ ")
+if [ -n "$ZSH_NAME" ]; then
+  PS1=$(echo -e "\033[0;32m%n@%m:%~ ($os_version)\033[0m\n\$ ")
+else
+  PS1=$(echo -e "\033[0;32m\u@\h:\w ($os_version)\[\033[0m\]\n\$ ")
+fi
 
 export CLICOLOR=yes
 if cmd_exists colorls; then
