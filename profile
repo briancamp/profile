@@ -64,6 +64,10 @@ else
   PS1=$(echo -e "\033[0;32m\u@\h:\w ($os_version)\[\033[0m\]\n\$ ")
 fi
 
+if [ -n "$ZSH_NAME" ]; then
+  bindkey "^R" history-incremental-search-backward
+fi
+
 export CLICOLOR=yes
 if cmd_exists colorls; then
   alias ls=colorls
