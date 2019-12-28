@@ -69,6 +69,8 @@ if [ -n "$ZSH_NAME" ]; then
   bindkey "^R" history-incremental-search-backward
   # keep zsh from getting in the way of rm -f ./blah/*
   setopt rmstarsilent
+  # disable undesirable zsh glob behavior
+  unsetopt nomatch
 fi
 
 export CLICOLOR=yes
