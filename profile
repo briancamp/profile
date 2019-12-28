@@ -65,7 +65,10 @@ else
 fi
 
 if [ -n "$ZSH_NAME" ]; then
+  # Enable bash-like ctrl-r search
   bindkey "^R" history-incremental-search-backward
+  # keep zsh from getting in the way of rm -f ./blah/*
+  setopt rmstarsilent
 fi
 
 export CLICOLOR=yes
