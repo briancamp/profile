@@ -41,10 +41,10 @@ fi
 
 prompt_and_link gitconfig .gitconfig
 prompt_and_link inputrc .inputrc
-if [ -n "$BASH" ]; then
-  prompt_and_link profile .bash_profile
-elif [ -n "$ZSH_NAME" ]; then
+if [ -n "$ZSH_NAME" ] || [ "$SHELL" == /bin/zsh ]; then
   prompt_and_link profile .zlogin
+elif [ -n "$BASH" ]; then
+  prompt_and_link profile .bash_profile
 else
   prompt_and_link profile .profile
 fi
