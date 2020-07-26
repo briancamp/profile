@@ -3,6 +3,7 @@ cd
 
 # Setup ssh-agent for wsl
 if ! pgrep ssh-agent > /dev/null; then
+  rm -f ~/.ssh/agent.sock
   eval $(ssh-agent -s -a ~/.ssh/agent.sock)
   ssh-add
 else
