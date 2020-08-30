@@ -71,6 +71,8 @@ if [ -n "$ZSH_NAME" ]; then
   setopt rmstarsilent
   # disable undesirable zsh glob behavior
   unsetopt nomatch
+  # make tab completion more like ksh
+  setopt bash_autolist
 fi
 
 export CLICOLOR=yes
