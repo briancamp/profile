@@ -33,7 +33,7 @@ export VISUAL=vi
 export EDITOR=vi
 
 for dir in /bin /usr/bin /usr/local/bin /sbin /usr/sbin /usr/local/sbin \
-           "$HOME/bin" "$HOME/.local/bin"; do
+           "$HOME/bin" "$HOME/.local/bin" /opt/homebrew/bin; do
   if [ -d "$dir" ] && [[ ":$PATH:" != *":$dir:"* ]]; then
     PATH="$dir:${PATH+"$PATH"}"
   fi
