@@ -9,3 +9,8 @@ if ! pgrep ssh-agent > /dev/null; then
 else
   export SSH_AUTH_SOCK=~/.ssh/agent.sock
 fi
+
+# Disable cursor blinking in WSL
+if grep -qi Microsoft /proc/version 2> /dev/null; then
+  echo -e "\e[2 q"
+fi
