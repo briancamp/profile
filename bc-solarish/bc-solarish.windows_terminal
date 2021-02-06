@@ -4,6 +4,7 @@
 
 {
     "defaultProfile": "Ubuntu",
+    "multiLinePasteWarning": false,
     "profiles": {
         "defaults": {
             "colorScheme": "BC Solarish",
