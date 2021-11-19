@@ -1,6 +1,7 @@
 # ssh, with deprecated / insecure options enabled
 badssh() {
-  ssh -oKexAlgorithms=+diffie-hellman-group-exchange-sha1 \
+  ssh -o Ciphers=+aes128-cbc,aes192-cbc,aes256-cbc \
+      -oKexAlgorithms=+diffie-hellman-group-exchange-sha1 \
       -oKexAlgorithms=+diffie-hellman-group1-sha1 \
       -oKexAlgorithms=+diffie-hellman-group14-sha1 \
       -oHostKeyAlgorithms=+ssh-dss \
