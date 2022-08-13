@@ -4,7 +4,7 @@ badssh() {
       -oKexAlgorithms=+diffie-hellman-group-exchange-sha1 \
       -oKexAlgorithms=+diffie-hellman-group1-sha1 \
       -oKexAlgorithms=+diffie-hellman-group14-sha1 \
-      -oHostKeyAlgorithms=+ssh-dss \
+      -oHostKeyAlgorithms=+ssh-dss,ssh-rsa \
       "$@"
 }
 
