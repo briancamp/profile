@@ -22,4 +22,8 @@ setxkbmap -layout 'us' -option caps:swapescape
 xsetroot -cursor_name left_ptr
 xsetroot -solid steelblue
 
+if [ -f ~/.config/tint2/tint2rc ]; then
+  tint2 &
+fi
+
 exec cwm
