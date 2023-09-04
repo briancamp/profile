@@ -21,6 +21,9 @@ fi
 setxkbmap -layout 'us' -option caps:swapescape
 xsetroot -cursor_name left_ptr
 
+xidle &  # Config in .Xresources
+xdotool behave_screen_edge --delay 2000 bottom-right exec xlock &
+
 if ! ~/.fehbg 2> /dev/null; then
   xsetroot -solid steelblue
 fi
