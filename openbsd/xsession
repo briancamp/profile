@@ -18,6 +18,10 @@ else
   xrdb -DHOME=$HOME < ~/.Xresources
 fi
 
+# Crazy fix for forward/back mouse buttons
+# https://www.bsdhowto.ch/mousekeys.html
+xmodmap -e "pointer = 1 2 3 8 9 10 11 4 5 6 7 12 13 14 15 16"
+
 setxkbmap -layout 'us' -option caps:swapescape
 xsetroot -cursor_name left_ptr
 
