@@ -20,7 +20,10 @@ fi
 
 setxkbmap -layout 'us' -option caps:swapescape
 xsetroot -cursor_name left_ptr
-xsetroot -solid steelblue
+
+if ! ~/.fehbg 2> /dev/null; then
+  xsetroot -solid steelblue
+fi
 
 if [ -f ~/.config/tint2/tint2rc ]; then
   tint2 &
