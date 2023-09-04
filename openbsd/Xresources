@@ -1,0 +1,38 @@
+! Cursor, fonts, and DPI
+#ifdef HIDPI
+Xcursor.theme:        Adwaita
+Xcursor.size:         48
+Xft.dpi:              192
+*.font:               -*-lucida-medium-r-*-*-24-*-*-*-*-*-*-*
+#else
+*.font:               -*-lucida-medium-r-*-*-12-*-*-*-*-*-*-*
+#endif
+
+! xterm
+XTerm*termName:       xterm-256color
+XTerm*locale:         UTF-8
+XTerm*loginShell:     true
+XTerm*visualBell:     true
+XTerm*scrollBar:      false
+XTerm*saveLines:      10000
+XTerm*faceName:       xft:Hack:size=13:antialias=true
+XTerm*allowMouseOps:  true
+XTerm*foreground:     #708284
+XTerm*background:     #042029
+XTerm*cursorColor:    #708284
+XTerm*color0:         #000000
+XTerm*color8:         #4d4d4d
+XTerm*color1:         #cc0403
+XTerm*color9:         #3e0605
+XTerm*color2:         #19cb00
+XTerm*color10:        #23fd00
+XTerm*color3:         #cecb00
+XTerm*color11:        #fffd00
+XTerm*color4:         #001cd1
+XTerm*color12:        #0026ff
+XTerm*color5:         #cb1ed1
+XTerm*color13:        #fd28ff
+Xterm*color6:         #0dcdcd
+Xterm*color14:        #14ffff
+Xterm*color7:         #e5e5e5
+Xterm*color15:        #ffffff
