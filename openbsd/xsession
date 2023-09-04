@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# Firefox settings
+export MOZ_ACCELERATED=1
+export MOZ_WEBRENDER=1
+
+SCREEN_WIDTH=`xrandr 2>&1 | grep "Screen 0: minimum" | sed -e 's/.*, current //' -e 's/ x.*//'`
+if [ "${SCREEN_WIDTH}" -ge 1920 ]; then
+  echo "using HIDPI"
+  export HIDPI=1
+  # export GDK_SCALE=2
+  export QT_SCALE_FACTOR=2
+fi
+
+if [ "$HIDPI" = "1" ]; then
+  xrdb -DHIDPI=1 -DHOME=$HOME < ~/.Xresources
+else
+  xrdb -DHOME=$HOME < ~/.Xresources
+fi
+
+setxkbmap -layout 'us' -option caps:swapescape
+xsetroot -cursor_name left_ptr
+xsetroot -solid steelblue
+
+exec cwm
