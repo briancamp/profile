@@ -36,4 +36,6 @@ if [ -f ~/.config/tint2/tint2rc ]; then
   tint2 &
 fi
 
+~/.xsession.local
+
 exec cwm
