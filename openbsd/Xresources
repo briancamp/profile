@@ -8,6 +8,11 @@ Xft.dpi:              192
 *.font:               -*-lucida-medium-r-*-*-12-*-*-*-*-*-*-*
 #endif
 
+! xidle
+XIdle*position:       se
+XIdle*delay:          2
+XIdle*timeout:        900
+
 ! xterm
 XTerm*termName:       xterm-256color
 XTerm*locale:         UTF-8
