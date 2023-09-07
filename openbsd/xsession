@@ -22,6 +22,10 @@ fi
 # https://www.bsdhowto.ch/mousekeys.html
 xmodmap -e "pointer = 1 2 3 8 9 10 11 4 5 6 7 12 13 14 15 16"
 
+if [ -x /usr/local/bin/dbus-launch -a -z "${DBUS_SESSION_BUS_ADDRESS}" ]; then
+  eval `dbus-launch --sh-syntax --exit-with-x11`
+fi
+
 setxkbmap -layout 'us' -option caps:swapescape
 xsetroot -cursor_name left_ptr
 
