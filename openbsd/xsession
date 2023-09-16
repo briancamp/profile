@@ -42,8 +42,6 @@ if [ -f ~/.config/tint2/tint2rc ]; then
   tint2 &
 fi
 
-/usr/local/libexec/tray-app/sound &
-
 ~/.xsession.local
 
 exec cwm

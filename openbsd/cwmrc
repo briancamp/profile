@@ -3,3 +3,6 @@ fontname "Courier:pixelsize=30:style=Regular"
 command firefox firefox
 command tint2conf tint2conf
 command xterm xterm
+
+bind-key XF86AudioRaiseVolume "sndioctl output.level=+0.05"
+bind-key XF86AudioLowerVolume "sndioctl output.level=-0.05"
