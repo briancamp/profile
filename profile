@@ -117,4 +117,7 @@ if [ -n "$SSH_AUTH_SOCK" ]; then
   unset persist_sock
 fi
 
+# (try to) disable core dumps
+ulimit -c 0
+
 . ~/.profile.local 2> /dev/null

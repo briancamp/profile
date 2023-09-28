@@ -12,6 +12,9 @@ if [ "${SCREEN_WIDTH}" -ge 1920 ]; then
   export QT_SCALE_FACTOR=2
 fi
 
+# disable core dumps
+ulimit -c 0
+
 if [ "$HIDPI" = "1" ]; then
   xrdb -DHIDPI=1 -DHOME=$HOME < ~/.Xresources
 else
