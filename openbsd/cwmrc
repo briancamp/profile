@@ -2,6 +2,7 @@ fontname "Courier:pixelsize=30:style=Regular"
 
 command chrome chrome
 command firefox firefox
+command remmina remmina
 command tint2conf tint2conf
 command xterm xterm
 
