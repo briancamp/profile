@@ -48,6 +48,8 @@ if [ -f ~/.config/tint2/tint2rc ]; then
   tint2 &
 fi
 
+numlockx on
+
 ~/.xsession.local
 
 exec cwm
