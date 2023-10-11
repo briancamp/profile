@@ -35,7 +35,7 @@ macos_version() {
 os_release_version() {
   (
     . /etc/os-release > /dev/null 2>&1
-    echo $PRETTY_NAME
+    echo "$NAME $VERSION_ID"
   )
 }
 
@@ -70,10 +70,18 @@ else
   os_version=Unknown
 fi
 
-if [ -n "$ZSH_NAME" ]; then
-  PS1=$(echo -e "\033[0;32m%n@%m:%~ ($os_version)\033[0m\n\$ ")
+if cmd_exists uname; then
+  os_platform="/$(uname -p)"
 else
-  PS1=$(echo -e "\033[0;32m\u@\h:\w ($os_version)\[\033[0m\]\n\$ ")
+  os_platform=
+fi
+
+os_label="$os_version$os_platform"
+
+if [ -n "$ZSH_NAME" ]; then
+  PS1=$(echo -e "\033[0;32m%n@%m:%~ ($os_label)\033[0m\n\$ ")
+else
+  PS1=$(echo -e "\033[0;32m\u@\h:\w ($os_label)\[\033[0m\]\n\$ ")
 fi
 
 if [ -n "$ZSH_NAME" ]; then
