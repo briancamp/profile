@@ -1,0 +1,28 @@
+#!/bin/sh
+
+if ! ls *.aax > /dev/null 2>&1; then
+  echo 'No aax files in this directory.' 1>&2
+  exit 1
+fi
+
+if ! which ffmpeg > /dev/null 2>&1; then
+  echo 'ffmpeg not in the PATH. ffmpeg required for encoding.' 1>&2
+  exit 1
+fi
+
+for aax in *.aax; do
+  m4b=$(echo $aax | sed -re 's/_ep[0-9]+//' -e 's/aax$/m4b/')
+  echo "$aax ->"
+  echo "$m4b"
+  read -p "y/n? " answer
+  if [ "$answer" == "y" ]; then
+    encoded=1
+    ffmpeg -y -activation_bytes f92d2404 -i "$aax" -codec copy "$m4b"
+  fi
+done
+
+if [ "$encoded" -eq 1 ]; then
+  echo
+  du -sh *.m4b
+  echo
+fi
