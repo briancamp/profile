@@ -71,7 +71,7 @@ else
 fi
 
 if cmd_exists uname; then
-  os_platform="/$(uname -p)"
+  os_platform="/$(uname -m)"
 else
   os_platform=
 fi
