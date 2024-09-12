@@ -19,7 +19,7 @@ prompt_yn() {
 
   echo -n "$@"
   read resp
-  echo "${resp}" | egrep -q -i '^ye?s?$'
+  echo "${resp}" | grep -E -q -i '^ye?s?$'
 }
 
 
