@@ -9,6 +9,7 @@ vim.api.nvim_create_user_command('B', function()
   vim.cmd('filetype indent on')
 
   -- linters
+  -- requires git clone https://github.com/mfussenegger/nvim-lint ~/.config/nvim/pack/plugins/start/nvim-lint
   local ok, lint = pcall(require, "lint")
   if ok then
   local linters_by_ft = {}
