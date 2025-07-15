@@ -49,5 +49,3 @@ else
   prompt_and_link profile .profile
 fi
 prompt_and_link tmux.conf .tmux.conf
-prompt_and_link vim .vim
-prompt_and_link vim/vimrc .vimrc
