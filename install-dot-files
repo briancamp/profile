@@ -7,8 +7,10 @@ prompt_and_link() {
   local src_dir="$(dirname "$0")"
   local src="${src_dir}/$1"
   local dst="$2"
+  local dst_dir="$(dirname "$2")"
 
   if prompt_yn "${dst} -> ${src} ? "; then
+    mkdir -p "$dst_dir"
     ln -sf "${src}" "${dst}"
   fi
 }
@@ -41,7 +43,7 @@ fi
 
 prompt_and_link gitconfig .gitconfig
 prompt_and_link inputrc .inputrc
-if [ -n "$ZSH_NAME" ] || [ "$SHELL" == /bin/zsh ]; then
+if [ -n "$ZSH_NAME" ] || [ "$SHELL" = /bin/zsh ]; then
   prompt_and_link profile .zlogin
 elif [ -n "$BASH" ]; then
   prompt_and_link profile .bash_profile
@@ -49,3 +51,4 @@ else
   prompt_and_link profile .profile
 fi
 prompt_and_link tmux.conf .tmux.conf
+prompt_and_link nvim/init.lua ~/.config/nvim/init.lua
