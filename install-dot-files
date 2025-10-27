@@ -1,13 +1,15 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Setup links to various dotfiles.
 
 
 prompt_and_link() {
-  local src_dir="$(dirname "$0")"
+  local src_dir
+  src_dir="$(dirname "$0")"
   local src="${src_dir}/$1"
   local dst="$2"
-  local dst_dir="$(dirname "$2")"
+  local dst_dir
+  dst_dir="$(dirname "$2")"
 
   if prompt_yn "${dst} -> ${src} ? "; then
     mkdir -p "$dst_dir"
@@ -20,7 +22,7 @@ prompt_yn() {
   local resp
 
   echo -n "$@"
-  read resp
+  read -r resp
   echo "${resp}" | grep -E -q -i '^ye?s?$'
 }
 
