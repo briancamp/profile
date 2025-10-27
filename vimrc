@@ -31,7 +31,7 @@ fu EnableAdvanced()
   augroup sh_shellcheck
     autocmd!
     autocmd FileType sh,bash setlocal
-      \ makeprg=shellcheck\ -f\ gcc\ %
+      \ makeprg=shellcheck\ -e\ SC1090,SC1091\ -f\ gcc\ %
     autocmd FileType sh,bash setlocal
       \ errorformat=%f:%l:%c:\ %trror:\ %m,%f:%l:%c:\ %t%*[^:]:\ %m
     autocmd FileType sh,bash autocmd

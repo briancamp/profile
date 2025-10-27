@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # ssh, with deprecated / insecure options enabled
 badssh() {
   ssh -o Ciphers=+aes128-cbc,aes192-cbc,aes256-cbc \
@@ -10,25 +12,31 @@ badssh() {
       "$@"
 }
 
+
 cmd_exists() {
-  while [ -n "$1" ]; do
-    if ! which "$1" > /dev/null 2>&1; then
-      return 1
-    fi
-    shift
+  for cmd do
+    command -v -- "$cmd" >/dev/null 2>&1 || return 1
   done
   return 0
 }
 
 
+is_cygwin_like() {
+  command -v uname >/dev/null 2>&1 || return 1
+  case "$(uname -s 2>/dev/null)" in
+    CYGWIN*|MSYS*|MINGW*) return 0 ;;
+    *)                    return 1 ;;
+  esac
+}
+
+
 lsb_version() {
-  echo $(lsb_release -sir)
+  lsb_release -sir
 }
 
 
 macos_version() {
-  echo -n 'MacOS '
-  sw_vers -productVersion  
+  echo "MacOS $(sw_vers -productVersion)"
 }
 
 
@@ -45,10 +53,13 @@ export VISUAL=vi
 export EDITOR=vi
 
 for dir in /bin /usr/bin /usr/local/bin /sbin /usr/sbin /usr/local/sbin \
-           "$HOME/bin" "$HOME/.local/bin" /opt/homebrew/bin; do
-  if [ -d "$dir" ] && [[ ":$PATH:" != *":$dir:"* ]]; then
-    PATH="$dir:${PATH+"$PATH"}"
-  fi
+           "$HOME/bin" "$HOME/.local/bin" /opt/homebrew/bin
+  do
+    [ -d "$dir" ] || continue
+    case ":$PATH:" in
+      *":$dir:"*) : ;;                           # already present
+      *) PATH="$dir${PATH:+:$PATH}" ;;           # prepend
+    esac
 done
 unset dir
 
@@ -58,11 +69,11 @@ elif [ -f /etc/os-release ]; then
   os_version=$(os_release_version)
 elif cmd_exists sw_vers uname && [ "$(uname)" = Darwin ]; then
   os_version=$(macos_version)
-elif [ "$OSTYPE" = cygwin ] && cmd_exists uname sed; then
+elif is_cygwin_like && cmd_exists uname sed; then
   os_version="Windows $(uname | sed 's/.*-//')"
   export DISPLAY=:0.0
   if cmd_exists ssh-pageant && [ -n "$TEMP" ]; then
-    eval $(ssh-pageant -ra "$TEMP/.ssh-pageant")
+    eval "$(ssh-pageant -ra "$TEMP/.ssh-pageant")"
   fi
 elif cmd_exists uname; then
   os_version=$(uname -sr)
@@ -79,9 +90,10 @@ fi
 os_label="$os_version$os_platform"
 
 if [ -n "$ZSH_NAME" ]; then
-  PS1=$(echo -e "\033[0;32m%n@%m:%~ ($os_label)\033[0m\n\$ ")
+  # shellcheck disable=SC3003
+  PS1='%F{green}%n@%m:%~ ('"$os_label"')%f'$'\n$ '
 else
-  PS1=$(echo -e "\033[0;32m\u@\h:\w ($os_label)\[\033[0m\]\n\$ ")
+  PS1="\[\e[0;32m\]\u@\h:\w ($os_label)\[\e[0m\]\n\$ "
 fi
 
 if [ -n "$ZSH_NAME" ]; then
@@ -96,10 +108,21 @@ if [ -n "$ZSH_NAME" ]; then
 fi
 
 export CLICOLOR=yes
-if cmd_exists colorls; then
-  alias ls=colorls
-elif ls --color > /dev/null 2>&1; then
-  alias ls="ls --color"
+have_colorls='' have_gnuls='' have_bsdls=''
+if command -v colorls >/dev/null 2>&1; then
+  have_colorls=1
+elif command ls --color=auto -d . >/dev/null 2>&1; then
+  have_gnuls=1
+elif command ls -G -d . >/dev/null 2>&1; then
+  have_bsdls=1
+fi
+if [ -n "$have_colorls" ]; then
+  alias ls='colorls'
+elif [ -n "$have_gnuls" ]; then
+  alias ls='ls --color=auto'
+elif [ -n "$have_bsdls" ]; then
+  export CLICOLOR=1
+  alias ls='ls -G'
 fi
 
 if cmd_exists doas && ! cmd_exists sudo; then
@@ -107,6 +130,7 @@ if cmd_exists doas && ! cmd_exists sudo; then
 fi
 
 if [ -n "$BASH_VERSION" ]; then
+  # shellcheck disable=SC3044
   complete -r > /dev/null 2>&1
   if ! [ -f ~/.bash_sessions_disable ]; then
     touch ~/.bash_sessions_disable 2> /dev/null
@@ -126,6 +150,7 @@ if [ -n "$SSH_AUTH_SOCK" ]; then
 fi
 
 # (try to) disable core dumps
-ulimit -c 0
+# shellcheck disable=SC3045
+ulimit -c 0 > /dev/null 2>&1
 
 . ~/.profile.local 2> /dev/null
