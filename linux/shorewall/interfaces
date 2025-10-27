@@ -1,4 +1,0 @@
-?FORMAT 2
-#ZONE		INTERFACE		OPTIONS
-#dock            docker0                 bridge
-wan             +                       -

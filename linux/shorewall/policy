@@ -1,9 +1,0 @@
-#SOURCE	DEST	POLICY		LOG	LIMIT:		CONNLIMIT:
-#				LEVEL	BURST		MASK
-
-fw      all     ACCEPT
-
-#dock    $FW     REJECT
-#dock    all     ACCEPT
-
-all     all     DROP            NFLOG

@@ -1,4 +1,0 @@
-#ZONE   TYPE
-fw      firewall
-wan     ipv4
-#dock    ipv4
