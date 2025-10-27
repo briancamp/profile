@@ -2,7 +2,6 @@
 
 xargs brew install <<'PACKAGES'
 autossh
-ffmpeg
 flake8
 mas
 nmap
