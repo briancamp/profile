@@ -51,4 +51,4 @@ else
   prompt_and_link profile .profile
 fi
 prompt_and_link tmux.conf .tmux.conf
-prompt_and_link nvim/init.lua ~/.config/nvim/init.lua
+prompt_and_link vimrc .vimrc
