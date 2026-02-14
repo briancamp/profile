@@ -26,6 +26,7 @@ fi
 # shellcheck disable=SC2086
 for host in $($tailscale status | awk '{print $2}'); do
   $tailscale ping --timeout=1s -c=5 $host > /dev/null 2>&1 &
+  $tailscale ping --icmp --timeout=1s -c=5 $host > /dev/null 2>&1 &
 done
 wait
 
