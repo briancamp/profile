@@ -8,11 +8,11 @@ tailcolors() {
 
   if sed --version >/dev/null 2>&1; then
     sed -E \
-      -e "s/\\<active\\>/${GREEN}active${RESET}/g" \
+      -e "s/\\<direct\\>/${GREEN}direct${RESET}/g" \
       -e "s/\\<relay\\>/${RED}relay${RESET}/g"
   else
     sed -E \
-      -e "s/[[:<:]]active[[:>:]]/${GREEN}active${RESET}/g" \
+      -e "s/[[:<:]]direct[[:>:]]/${GREEN}direct${RESET}/g" \
       -e "s/[[:<:]]relay[[:>:]]/${RED}relay${RESET}/g"
   fi
 }
@@ -29,4 +29,4 @@ for host in $($tailscale status | awk '{print $2}'); do
 done
 wait
 
-$tailscale status --active | tailcolors
+$tailscale status --active | grep -v 'active;.*offline' | tailcolors
