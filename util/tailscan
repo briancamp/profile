@@ -5,9 +5,16 @@ tailcolors() {
   GREEN="${ESC}[32m"
   RED="${ESC}[31m"
   RESET="${ESC}[0m"
-  sed -E \
-    -e "s/[[:<:]]active[[:>:]]/${GREEN}direct${RESET}/g" \
-    -e "s/[[:<:]]relay[[:>:]]/${RED}relay${RESET}/g"
+
+  if sed --version >/dev/null 2>&1; then
+    sed -E \
+      -e "s/\\<active\\>/${GREEN}active${RESET}/g" \
+      -e "s/\\<relay\\>/${RED}relay${RESET}/g"
+  else
+    sed -E \
+      -e "s/[[:<:]]active[[:>:]]/${GREEN}active${RESET}/g" \
+      -e "s/[[:<:]]relay[[:>:]]/${RED}relay${RESET}/g"
+  fi
 }
 
 if [ -f /Applications/Tailscale.app/Contents/MacOS/Tailscale ]; then
