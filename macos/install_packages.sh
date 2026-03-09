@@ -1,7 +1,6 @@
 #!/bin/sh
 
 xargs brew install <<'PACKAGES'
-autossh
 flake8
 mas
 nmap
