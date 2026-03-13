@@ -1,6 +1,7 @@
 #!/bin/sh
 
 packages='
+  bind-utils
   bindutils
   git
   iperf3
