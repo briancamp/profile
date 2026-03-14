@@ -19,6 +19,8 @@ tailcolors() {
 
 if [ -f /Applications/Tailscale.app/Contents/MacOS/Tailscale ]; then
   tailscale=/Applications/Tailscale.app/Contents/MacOS/Tailscale
+elif which tailscale.exe > /dev/null 2>&1; then
+  tailscale=tailscale.exe
 else
   tailscale=tailscale
 fi
