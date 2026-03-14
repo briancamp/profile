@@ -7,6 +7,7 @@ packages='
   iperf3
   lsof
   lz4
+  net-tools
   nmap
   nvme-cli
   pciutils
