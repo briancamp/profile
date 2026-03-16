@@ -22,6 +22,9 @@ packages='
   telnet
   tmux
   vim
+  udisks2
+  udisks2-btrfs
+  udisks2-lvm2
   wget
   whois
   wireguard-tools
