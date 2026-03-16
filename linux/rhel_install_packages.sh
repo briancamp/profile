@@ -1,5 +1,9 @@
 #!/bin/sh
 
+if [ $UID -ne 0 ]; then
+  exec sudo -E "$0"
+fi
+
 packages='
   bind-utils
   bindutils
