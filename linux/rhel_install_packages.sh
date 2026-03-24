@@ -35,8 +35,12 @@ packages='
   zstd
 '
 
-if ! rpm -q epel-release > /dev/null 2>&1; then
-  dnf install -y epel-release
+if ! dnf repolist 2>&1 | grep -i epel; then
+  dnf install -y --skip-broken epel-release oracle-epel-release-\*
+fi
+
+if [ -f /etc/oracle-release ]; then
+  dnf config-manager --set-enabled ol*_codeready_builder > /dev/null 2>&1
 fi
 
 crb enable > /dev/null 2>&1
