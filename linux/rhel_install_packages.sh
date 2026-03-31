@@ -25,6 +25,7 @@ packages='
   tcpdump
   telnet
   tmux
+  vi
   vim
   udisks2
   udisks2-btrfs
