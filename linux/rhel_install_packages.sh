@@ -22,6 +22,7 @@ packages='
   screen
   ShellCheck
   swaks
+  tar
   tcpdump
   telnet
   tmux
