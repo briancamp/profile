@@ -3,6 +3,7 @@
 xargs brew install <<'PACKAGES'
 flake8
 inetutils
+macmon
 mas
 nmap
 pv
