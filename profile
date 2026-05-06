@@ -104,6 +104,8 @@ if [ -n "$ZSH_NAME" ]; then
   unsetopt nomatch
   # make tab completion more like ksh
   setopt bash_autolist
+  # disable EOL % mark
+  PROMPT_EOL_MARK=""
 fi
 
 export CLICOLOR=yes
