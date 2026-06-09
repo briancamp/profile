@@ -105,6 +105,7 @@ if [ -n "$ZSH_NAME" ]; then
   # make tab completion more like ksh
   setopt bash_autolist
   # disable EOL % mark
+  # shellcheck disable=SC2034
   PROMPT_EOL_MARK=""
 fi
 
