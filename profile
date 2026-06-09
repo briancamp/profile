@@ -52,7 +52,7 @@ export VISUAL=vi
 export EDITOR=vi
 
 for dir in /bin /usr/bin /usr/local/bin /sbin /usr/sbin /usr/local/sbin \
-           "$HOME/bin" "$HOME/.local/bin" /opt/homebrew/bin
+           "$HOME/bin" "$HOME/.local/bin"
   do
     [ -d "$dir" ] || continue
     case ":$PATH:" in
@@ -61,6 +61,11 @@ for dir in /bin /usr/bin /usr/local/bin /sbin /usr/sbin /usr/local/sbin \
     esac
 done
 unset dir
+
+# homebrew environment & PATH prepend
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 if cmd_exists lsb_release; then
   os_version=$(lsb_version)
