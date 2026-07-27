@@ -91,7 +91,7 @@ else
   os_platform=
 fi
 
-os_label="$os_version$os_platform"
+os_label=$(printf '%s' "$os_version$os_platform" | tr '\r\n' ' ')
 
 if [ -n "$ZSH_NAME" ]; then
   # shellcheck disable=SC3003
