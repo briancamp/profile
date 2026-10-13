@@ -9,6 +9,9 @@ defaults write com.apple.dock show-recents -bool false
 defaults write com.apple.WindowManager \
   EnableStandardClickToShowDesktop -bool false
 
+# Display drive icons on desktop
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
+
 # Configure Finder
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 defaults write com.apple.finder FXPreferredGroupBy -string "Name"
