@@ -2,6 +2,7 @@
 
 xargs brew install <<'PACKAGES'
 flake8
+gnu-tar
 inetutils
 mas
 nmap
